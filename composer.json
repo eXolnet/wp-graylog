@@ -1,0 +1,35 @@
+{
+    "name": "exolnet/wp-log",
+    "description": "Add Whoops and Monolog to handle Wordpress Exception",
+    "type": "wordpress-plugin",
+    "keywords": [
+        "exolnet",
+        "wordpress",
+        "whoops",
+        "monolog"
+    ],
+    "homepage": "https://github.com/eXolnet/wp-log",
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "eXolnet",
+            "homepage": "https://www.exolnet.com"
+        }
+    ],
+    "require": {
+        "php": "^7.1",
+        "filp/whoops": "^2.3",
+        "graylog2/gelf-php": "^1.6",
+        "monolog/monolog": "^1.24"
+    },
+    "require-dev": {
+        "squizlabs/php_codesniffer": "^3.4"
+    },
+    "scripts": {
+        "lint": "vendor/bin/phpcs -p --standard=PSR2 --extensions=php --ignore=*/vendor/* .",
+        "lint-fix": "vendor/bin/phpcbf -p --standard=PSR2 --extensions=php --ignore=*/vendor/* ."
+    },
+    "config": {
+        "sort-packages": true
+    }
+}
