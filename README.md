@@ -1,5 +1,7 @@
 # wp-log
-Add Whoops and Monolog to handle Wordpress Exception
+This wordpress plugin is use to add a Wordpress Processor to handle exceptions in a Wordpress site.
+
+It is also installing whoops to add some beauty to the exceptions.
 
 Note: Whoops will be activated if `WP_DEBUG` variable is set to `true`
 
