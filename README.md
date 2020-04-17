@@ -5,19 +5,56 @@
 [![Latest Stable Version](https://poser.pugx.org/eXolnet/wp-graylog/v/stable?format=flat-square)](https://packagist.org/packages/eXolnet/wp-graylog)
 [![Total Downloads](https://img.shields.io/packagist/dt/eXolnet/wp-graylog.svg?style=flat-square)](https://packagist.org/packages/eXolnet/wp-graylog)
 
-Adds a mu-plugin that register a Monolog handler to send exception to a Graylog channel.
+Register a Monolog handler to send exception to a Graylog channel.
 
-It is also installing whoops to add some beauty to the exceptions.
+## Requirements
 
-Note: Whoops will be activated if `WP_DEBUG` variable is set to `true`
+* Bedrock
+* Composer
+* PHP 7.2
+* Wordpress
 
-# Environment Variable
-Some environment variables are use by this plugin to know where to send the logs
+## Installation
+
+Require this package with Composer:
+
+```bash
+composer require exolnet/wp-graylog
+```
+
+Define the following PHP constants in your `config/application.php` file:
+
+```php
+/**
+ * wp-graylog
+ *
+ * Here you may configure the Graylog channel for your application. Behind the
+ * scene, it uses the Monolog PHP logging library.
+ */
+Config::define('GRAYLOG_HOST', env('GRAYLOG_HOST', 'localhost'));
+Config::define('GRAYLOG_PORT', env('GRAYLOG_PORT', 12201));
+Config::define('GRAYLOG_LEVEL', env('GRAYLOG_LEVEL', 'notice'));
+```
+
+Then, update your `.env` to add the following environment variables :
 
 ```
-LOG_APP=<APPLICATION_NAME>
-LOG_HOST=<LOGGING_APP_HOST>
-LOG_PORT=<LOGGING_APP_PORT>
+GRAYLOG_HOST=localhost
+GRAYLOG_PORT=12201
+GRAYLOG_LEVEL=notice
+```
+
+## Usage
+
+Once installed, errors occurring in your code with a level higher or equals to the `GRAYLOG_LEVEL` will be sent to
+the specified Graylog instance. You’ll then be able to centralize all your logs in one place.
+
+## Testing
+
+To run PHPUnit tests, please use:
+
+``` bash
+composer test
 ```
 
 ## Contributing
@@ -31,6 +68,7 @@ If you discover any security related issues, please email security@exolnet.com i
 ## Credits
 
 - [Simon Gaudreau](https://github.com/Gandhi11)
+- [Alexandre D’Eschambeault](https://github.com/xel1045)
 - [All Contributors](../../contributors)
 
 ## License

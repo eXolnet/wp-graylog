@@ -1,7 +1,4 @@
+/vendor
+.phpunit.result.cache
 composer.phar
-.DS_Store
-.idea/
-phpunit.xml
-Thumbs.db
-node_modules
-mix-manifest.json
+composer.lock

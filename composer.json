@@ -1,6 +1,6 @@
 {
     "name": "exolnet/wp-graylog",
-    "description": "Adds a mu-plugin that register a Monolog handler to send exception to a Graylog channel.",
+    "description": "Register a Monolog handler to send exception to a Graylog channel.",
     "type": "wordpress-muplugin",
     "keywords": [
         "exolnet",
@@ -17,17 +17,33 @@
         }
     ],
     "require": {
-        "php": "^7.1",
-        "filp/whoops": "^2.3",
+        "php": "^7.2",
         "graylog2/gelf-php": "^1.6",
         "monolog/monolog": "^1.24"
     },
     "require-dev": {
+        "exolnet/phpcs-config": "^1.0",
+        "phpunit/phpunit": "^9.1",
         "squizlabs/php_codesniffer": "^3.4"
     },
+    "autoload": {
+        "files": [
+            "src/init.php"
+        ],
+        "psr-4": {
+            "Exolnet\\Wordpress\\Graylog\\": "src/"
+        }
+    },
+    "autoload-dev": {
+        "psr-4": {
+            "Exolnet\\Wordpress\\Graylog\\Tests\\": "tests"
+        }
+    },
     "scripts": {
-        "lint": "vendor/bin/phpcs -p --standard=PSR2 --extensions=php --ignore=*/vendor/* .",
-        "lint-fix": "vendor/bin/phpcbf -p --standard=PSR2 --extensions=php --ignore=*/vendor/* ."
+        "lint": "vendor/bin/phpcs -p -s --standard=ruleset.xml",
+        "lint-fix": "vendor/bin/phpcbf -p --standard=ruleset.xml",
+        "test": "vendor/bin/phpunit",
+        "test-coverage": "vendor/bin/phpunit --coverage-html coverage"
     },
     "config": {
         "sort-packages": true
