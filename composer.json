@@ -1,6 +1,6 @@
 {
     "name": "exolnet/wp-graylog",
-    "description": "Register a Monolog handler to send exception to a Graylog channel.",
+    "description": "Adds a mu-plugin that register a Monolog handler to send exception to a Graylog channel.",
     "type": "wordpress-muplugin",
     "keywords": [
         "exolnet",

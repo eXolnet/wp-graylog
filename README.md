@@ -5,7 +5,7 @@
 [![Latest Stable Version](https://poser.pugx.org/eXolnet/wp-graylog/v/stable?format=flat-square)](https://packagist.org/packages/eXolnet/wp-graylog)
 [![Total Downloads](https://img.shields.io/packagist/dt/eXolnet/wp-graylog.svg?style=flat-square)](https://packagist.org/packages/eXolnet/wp-graylog)
 
-Register a Monolog handler to send exception to a Graylog channel.
+Adds a mu-plugin that register a Monolog handler to send exception to a Graylog channel.
 
 ## Requirements
 
