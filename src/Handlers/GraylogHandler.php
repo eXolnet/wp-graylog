@@ -3,10 +3,10 @@
 namespace Exolnet\Wordpress\Graylog\Handlers;
 
 use Exolnet\Wordpress\Graylog\Processors\WordpressProcessor;
+use Exolnet\Wordpress\Graylog\Severity;
 use Gelf\Publisher;
 use Gelf\Transport\UdpTransport;
 use Monolog\Handler\GelfHandler;
-use Monolog\Logger;
 use Monolog\Processor\IntrospectionProcessor;
 use Monolog\Processor\MemoryPeakUsageProcessor;
 use Monolog\Processor\MemoryUsageProcessor;
@@ -22,7 +22,7 @@ class GraylogHandler extends GelfHandler
      /**
      * @var int
      */
-    const LEVEL_DEFAULT = Logger::NOTICE;
+    const LEVEL_DEFAULT = Severity::NOTICE;
 
     /**
      * @param string $host

@@ -84,13 +84,15 @@ class WpGraylog
 
     /**
      * @param string $message
-     * @param int|null $level
+     * @param \Exolnet\Wordpress\Graylog\Severity|null $severity
      * @param array $context
      * @return void
      */
-    public function captureMessage(string $message, ?int $level = null, array $context = []): void
+    public function captureMessage(string $message, ?Severity $severity = null, array $context = []): void
     {
-        $this->getLogger()->log($level ?? Logger::NOTICE, $message, $context);
+        $level = ($severity ?? Severity::NOTICE())->getValue();
+
+        $this->getLogger()->log($level, $message, $context);
     }
 
     /**
@@ -99,7 +101,7 @@ class WpGraylog
      */
     public function captureException(Throwable $exception): void
     {
-        $this->captureMessage($exception->getMessage(), Logger::ERROR, [
+        $this->captureMessage($exception->getMessage(), Severity::ERROR(), [
             'exception' => $exception,
         ]);
     }
@@ -113,7 +115,7 @@ class WpGraylog
             return;
         }
 
-        $this->captureMessage($error['message'], Logger::ERROR, [
+        $this->captureMessage($error['message'], Severity::ERROR(), [
             'exception' => $error,
         ]);
     }

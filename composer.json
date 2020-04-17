@@ -19,7 +19,8 @@
     "require": {
         "php": "^7.2",
         "graylog2/gelf-php": "^1.6",
-        "monolog/monolog": "^1.24"
+        "monolog/monolog": "^1.24",
+        "myclabs/php-enum": "^1.7"
     },
     "require-dev": {
         "exolnet/phpcs-config": "^1.0",
