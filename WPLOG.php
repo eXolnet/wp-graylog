@@ -1,8 +1,8 @@
 <?php
 /**
  * Plugin Name: WP Log
- * Plugin URI: https://github.com/eXolnet/wp-log
- * Description: Add Whoops and Monolog to handle Wordpress Exception.
+ * Plugin URI: https://github.com/eXolnet/wp-graylog
+ * Description: Adds a mu-plugin that register a Monolog handler to send exception to a Graylog channel.
  * Version: 1.0.0
  * Author: eXolnet
  *

@@ -1,15 +1,16 @@
-# wp-log
+# wp-graylog
+
 [![Software License](https://img.shields.io/badge/license-MIT-8469ad.svg?style=flat-square)](LICENSE.md)
-[![Build Status](https://img.shields.io/travis/eXolnet/wp-log/master.svg?style=flat-square)](https://travis-ci.org/eXolnet/code-quality-tools)
+[![Build Status](https://img.shields.io/travis/eXolnet/wp-graylog/master.svg?style=flat-square)](https://travis-ci.org/eXolnet/wp-graylog)
 
 
-This wordpress plugin is use to add a Wordpress Processor to handle exceptions in a Wordpress site.
+Adds a mu-plugin that register a Monolog handler to send exception to a Graylog channel.
 
 It is also installing whoops to add some beauty to the exceptions.
 
 Note: Whoops will be activated if `WP_DEBUG` variable is set to `true`
 
-#Environment Variable
+# Environment Variable
 Some environment variables are use by this plugin to know where to send the logs
 
 ```
@@ -17,7 +18,6 @@ LOG_APP=<APPLICATION_NAME>
 LOG_HOST=<LOGGING_APP_HOST>
 LOG_PORT=<LOGGING_APP_PORT>
 ```
-
 
 ## Contributing
 

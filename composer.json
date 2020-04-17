@@ -1,14 +1,14 @@
 {
-    "name": "exolnet/wp-log",
-    "description": "Add Whoops and Monolog to handle Wordpress Exception",
-    "type": "wordpress-plugin",
+    "name": "exolnet/wp-graylog",
+    "description": "Adds a mu-plugin that register a Monolog handler to send exception to a Graylog channel.",
+    "type": "wordpress-muplugin",
     "keywords": [
         "exolnet",
         "wordpress",
-        "whoops",
-        "monolog"
+        "monolog",
+        "graylog"
     ],
-    "homepage": "https://github.com/eXolnet/wp-log",
+    "homepage": "https://github.com/eXolnet/wp-graylog",
     "license": "MIT",
     "authors": [
         {
