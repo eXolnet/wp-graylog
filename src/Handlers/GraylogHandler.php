@@ -15,13 +15,26 @@ use Monolog\Processor\WebProcessor;
 class GraylogHandler extends GelfHandler
 {
     /**
+     * @var int
+     */
+    const PORT_DEFAULT = 12201;
+
+     /**
+     * @var int
+     */
+    const LEVEL_DEFAULT = Logger::NOTICE;
+
+    /**
      * @param string $host
      * @param int $port
      * @param int $level
      * @param array $extra
      */
-    public function __construct(string $host, int $port, $level = Logger::NOTICE)
+    public function __construct(string $host, ?int $port = null, ?int $level = null)
     {
+        $port = $port ?? static::PORT_DEFAULT;
+        $level = $level ?? static::LEVEL_DEFAULT;
+
         $transport = new UdpTransport($host, $port);
         $publisher = new Publisher($transport);
 

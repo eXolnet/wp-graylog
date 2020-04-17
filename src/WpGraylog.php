@@ -17,11 +17,6 @@ class WpGraylog
     const CHANNEL_NAME_FALLBACK = 'graylog';
 
     /**
-     * @var int
-     */
-    const GRAYLOG_PORT_DEFAULT = 12201;
-
-    /**
      * @var static
      */
     protected static $instance;
@@ -30,14 +25,6 @@ class WpGraylog
      * @var \Monolog\Logger
      */
     protected $logger;
-
-    /**
-     * WpGraylog constructor.
-     */
-    protected function __construct()
-    {
-        //
-    }
 
     /**
      * @return string
@@ -68,19 +55,19 @@ class WpGraylog
     }
 
     /**
-     * @return int
+     * @return int|null
      */
-    public function getGraylogLevel(): int
+    public function getGraylogLevel(): ?int
     {
-        return defined('GRAYLOG_LEVEL') ? GRAYLOG_LEVEL : Logger::NOTICE;
+        return defined('GRAYLOG_LEVEL') ? (int)GRAYLOG_LEVEL : null;
     }
 
     /**
-     * @return int
+     * @return int|null
      */
-    public function getGraylogPort(): int
+    public function getGraylogPort(): ?int
     {
-        return defined('GRAYLOG_PORT') ? GRAYLOG_PORT : static::GRAYLOG_PORT_DEFAULT;
+        return defined('GRAYLOG_PORT') ? (int)GRAYLOG_PORT : null;
     }
 
     /**
