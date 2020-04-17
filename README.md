@@ -2,7 +2,8 @@
 
 [![Software License](https://img.shields.io/badge/license-MIT-8469ad.svg?style=flat-square)](LICENSE.md)
 [![Build Status](https://img.shields.io/travis/eXolnet/wp-graylog/master.svg?style=flat-square)](https://travis-ci.org/eXolnet/wp-graylog)
-
+[![Latest Stable Version](https://poser.pugx.org/eXolnet/wp-graylog/v/stable?format=flat-square)](https://packagist.org/packages/eXolnet/wp-graylog)
+[![Total Downloads](https://img.shields.io/packagist/dt/eXolnet/wp-graylog.svg?style=flat-square)](https://packagist.org/packages/eXolnet/wp-graylog)
 
 Adds a mu-plugin that register a Monolog handler to send exception to a Graylog channel.
 
