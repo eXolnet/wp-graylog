@@ -49,11 +49,36 @@ GRAYLOG_LEVEL=notice
 Once installed, errors occurring in your code with a level higher or equals to the `GRAYLOG_LEVEL` will be sent to
 the specified Graylog instance. You’ll then be able to centralize all your logs in one place.
 
+### Disable Default Error Handler
+
+By default, if a `GRAYLOG_HOST` is configured, a PHP error handler will be configured to send all errors to Graylog.
+This behaviour can be disabled by configuring the following environment variable:
+
+```php
+Config::define('GRAYLOG_INITIALIZE_ERROR_HANDLER', false);
+```
+
+### Capturing Errors
+
+You can either capture a caught exception or capture the last error:
+
+```php
+try {
+    $this->functionFailsForSure();
+} catch (\Throwable $exception) {
+    \Exolnet\Wordpress\Graylog\WpGraylog::captureException($exception);
+}
+
+// OR
+
+\Exolnet\Wordpress\Graylog\WpGraylog::captureLastError();
+```
+
 ## Testing
 
 To run PHPUnit tests, please use:
 
-``` bash
+```bash
 composer test
 ```
 
