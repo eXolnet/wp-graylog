@@ -31,9 +31,9 @@ Define the following PHP constants in your `config/application.php` file:
  * Here you may configure the Graylog channel for your application. Behind the
  * scene, it uses the Monolog PHP logging library.
  */
-Config::define('GRAYLOG_HOST', env('GRAYLOG_HOST', 'localhost'));
-Config::define('GRAYLOG_PORT', env('GRAYLOG_PORT', 12201));
-Config::define('GRAYLOG_LEVEL', env('GRAYLOG_LEVEL', 'notice'));
+Config::define('GRAYLOG_HOST', env('GRAYLOG_HOST'));
+Config::define('GRAYLOG_PORT', env('GRAYLOG_PORT'));
+Config::define('GRAYLOG_LEVEL', env('GRAYLOG_LEVEL'));
 ```
 
 Then, update your `.env` to add the following environment variables :
