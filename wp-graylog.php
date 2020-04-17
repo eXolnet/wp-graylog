@@ -1,6 +1,6 @@
 <?php
 
-namespace Exolnet\Wordpress\Graylog;
+use Exolnet\Wordpress\Graylog\WpGraylog;
 
 $wpGraylog = WpGraylog::instance();
 
