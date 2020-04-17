@@ -36,7 +36,7 @@ class WpGraylog
      */
     protected function __construct()
     {
-        $this->logger = $this->makeLogger();
+        //
     }
 
     /**
@@ -88,6 +88,10 @@ class WpGraylog
      */
     public function getLogger(): Logger
     {
+        if (! $this->logger) {
+            $this->logger = $this->makeLogger();
+        }
+
         return $this->logger;
     }
 
