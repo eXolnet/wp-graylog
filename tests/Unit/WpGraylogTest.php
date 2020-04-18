@@ -7,6 +7,9 @@ use Exolnet\Wordpress\Graylog\WpGraylog;
 use Monolog\Logger;
 use PHPUnit\Framework\TestCase;
 
+/**
+ * @covers \Exolnet\Wordpress\Graylog\WpGraylog
+ */
 class WpGraylogTest extends TestCase
 {
     /**

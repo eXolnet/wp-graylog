@@ -5,6 +5,9 @@ namespace Exolnet\Wordpress\Graylog\Tests\Unit\Processors;
 use Exolnet\Wordpress\Graylog\Processors\WordpressProcessor;
 use PHPUnit\Framework\TestCase;
 
+/**
+ * @covers \Exolnet\Wordpress\Graylog\Processors\WordpressProcessor
+ */
 class WordpressProcessorTest extends TestCase
 {
     /**

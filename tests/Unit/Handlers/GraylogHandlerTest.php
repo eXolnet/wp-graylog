@@ -5,6 +5,9 @@ namespace Exolnet\Wordpress\Graylog\Tests\Unit\Handlers;
 use Exolnet\Wordpress\Graylog\Handlers\GraylogHandler;
 use PHPUnit\Framework\TestCase;
 
+/**
+ * @covers \Exolnet\Wordpress\Graylog\Handlers\GraylogHandler
+ */
 class GraylogHandlerTest extends TestCase
 {
     /**
@@ -21,7 +24,6 @@ class GraylogHandlerTest extends TestCase
 
         $this->graylogHandler = new GraylogHandler('localhost');
     }
-
 
     /**
      * @return void
