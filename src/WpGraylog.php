@@ -31,7 +31,7 @@ class WpGraylog
      */
     public function getChannelName(): string
     {
-        return defined('GRAYLOG_CHANNEL') ? GRAYLOG_CHANNEL : static::CHANNEL_NAME_FALLBACK;
+        return defined('GRAYLOG_CHANNEL') && GRAYLOG_CHANNEL ? GRAYLOG_CHANNEL : static::CHANNEL_NAME_FALLBACK;
     }
 
     /**
@@ -39,7 +39,7 @@ class WpGraylog
      */
     public function getGraylogHost(): ?string
     {
-        return defined('GRAYLOG_HOST') ? GRAYLOG_HOST : null;
+        return defined('GRAYLOG_HOST') && GRAYLOG_HOST ? GRAYLOG_HOST : null;
     }
 
     /**
@@ -48,7 +48,7 @@ class WpGraylog
     public function getGraylogInitializeErrorHandler(): bool
     {
         if (defined('GRAYLOG_INITIALIZE_ERROR_HANDLER')) {
-            return GRAYLOG_INITIALIZE_ERROR_HANDLER;
+            return (bool)GRAYLOG_INITIALIZE_ERROR_HANDLER;
         }
 
         return $this->getGraylogHost() !== null;
@@ -59,7 +59,7 @@ class WpGraylog
      */
     public function getGraylogLevel(): ?string
     {
-        return defined('GRAYLOG_LEVEL') ? GRAYLOG_LEVEL : null;
+        return defined('GRAYLOG_LEVEL') && GRAYLOG_LEVEL ? GRAYLOG_LEVEL : null;
     }
 
     /**
@@ -67,7 +67,7 @@ class WpGraylog
      */
     public function getGraylogPort(): ?int
     {
-        return defined('GRAYLOG_PORT') ? (int)GRAYLOG_PORT : null;
+        return defined('GRAYLOG_PORT') && GRAYLOG_PORT ? (int)GRAYLOG_PORT : null;
     }
 
     /**
