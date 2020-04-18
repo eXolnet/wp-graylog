@@ -13,6 +13,7 @@ class WordpressProcessor
      */
     public function __invoke(array $record): array
     {
+        $record['extra']['level_name'] = $record['level_name'] ?? null;
         $record['extra']['app'] = $this->getApplicationName();
         $record['extra']['env'] = $this->getEnvironment();
         $record['extra']['user_agent'] = $this->getUserAgent();
