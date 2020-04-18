@@ -6,14 +6,14 @@ use Monolog\Logger;
 use MyCLabs\Enum\Enum;
 
 /**
- * @method static DEBUG()
- * @method static INFO()
- * @method static NOTICE()
- * @method static WARNING()
- * @method static ERROR()
- * @method static CRITICAL()
- * @method static ALERT()
- * @method static EMERGENCY()
+ * @method \Exolnet\Wordpress\Graylog\Severity DEBUG()
+ * @method \Exolnet\Wordpress\Graylog\Severity INFO()
+ * @method \Exolnet\Wordpress\Graylog\Severity NOTICE()
+ * @method \Exolnet\Wordpress\Graylog\Severity WARNING()
+ * @method \Exolnet\Wordpress\Graylog\Severity ERROR()
+ * @method \Exolnet\Wordpress\Graylog\Severity CRITICAL()
+ * @method \Exolnet\Wordpress\Graylog\Severity ALERT()
+ * @method \Exolnet\Wordpress\Graylog\Severity EMERGENCY()
  */
 class Severity extends Enum
 {
