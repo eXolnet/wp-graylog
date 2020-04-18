@@ -27,10 +27,10 @@ class GraylogHandler extends GelfHandler
     /**
      * @param string $host
      * @param int $port
-     * @param int $level
+     * @param string $level
      * @param array $extra
      */
-    public function __construct(string $host, ?int $port = null, ?int $level = null)
+    public function __construct(string $host, ?int $port = null, ?string $level = null)
     {
         $port = $port ?? static::PORT_DEFAULT;
         $level = $level ?? static::LEVEL_DEFAULT;

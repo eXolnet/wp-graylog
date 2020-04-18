@@ -55,11 +55,11 @@ class WpGraylog
     }
 
     /**
-     * @return int|null
+     * @return string|null
      */
-    public function getGraylogLevel(): ?int
+    public function getGraylogLevel(): ?string
     {
-        return defined('GRAYLOG_LEVEL') ? (int)GRAYLOG_LEVEL : null;
+        return defined('GRAYLOG_LEVEL') ? GRAYLOG_LEVEL : null;
     }
 
     /**

@@ -3,6 +3,7 @@
 namespace Exolnet\Wordpress\Graylog\Tests\Unit\Handlers;
 
 use Exolnet\Wordpress\Graylog\Handlers\GraylogHandler;
+use Exolnet\Wordpress\Graylog\Severity;
 use PHPUnit\Framework\TestCase;
 
 /**
@@ -22,7 +23,7 @@ class GraylogHandlerTest extends TestCase
     {
         parent::setUp();
 
-        $this->graylogHandler = new GraylogHandler('localhost');
+        $this->graylogHandler = new GraylogHandler('localhost', 12201, 'notice');
     }
 
     /**
@@ -31,5 +32,16 @@ class GraylogHandlerTest extends TestCase
     public function testItCanBeInitialized(): void
     {
         $this->assertInstanceOf(GraylogHandler::class, $this->graylogHandler);
+    }
+
+    /**
+     * @return void
+     */
+    public function testLevelIsCorrectlyConfigured(): void
+    {
+        $this->assertEquals(
+            Severity::NOTICE()->getValue(),
+            $this->graylogHandler->getLevel()
+        );
     }
 }
