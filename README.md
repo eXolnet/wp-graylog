@@ -49,6 +49,14 @@ GRAYLOG_LEVEL=notice
 Once installed, errors occurring in your code with a level higher or equals to the `GRAYLOG_LEVEL` will be sent to
 the specified Graylog instance. You’ll then be able to centralize all your logs in one place.
 
+### Application Name
+
+By default, the blog name is used as the application name, but you can overwrite it with the variable `GRAYLOG_APP`:
+
+```php
+Config::define('GRAYLOG_APP', 'custom-app-name');
+```
+
 ### Disable Default Error Handler
 
 By default, if a `GRAYLOG_HOST` is configured, a PHP error handler will be configured to send all errors to Graylog.
