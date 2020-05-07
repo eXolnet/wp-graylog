@@ -3,8 +3,8 @@
 namespace Exolnet\Wordpress\Graylog;
 
 use Exolnet\Wordpress\Graylog\Exceptions\WpGraylogException;
+use Exolnet\Wordpress\Graylog\Handlers\ErrorHandler;
 use Exolnet\Wordpress\Graylog\Handlers\GraylogHandler;
-use Monolog\ErrorHandler;
 use Monolog\Handler\HandlerInterface;
 use Monolog\Logger;
 use Throwable;
