@@ -37,6 +37,22 @@ class WpGraylog
     /**
      * @return string|null
      */
+    public function getGraylogTransport(): ?string
+    {
+        return defined('GRAYLOG_TRANSPORT') && GRAYLOG_TRANSPORT ? GRAYLOG_TRANSPORT : 'udp';
+    }
+
+    /**
+     * @return string|null
+     */
+    public function getGraylogSecure(): bool
+    {
+        return defined('GRAYLOG_SECURE') ? (bool)GRAYLOG_SECURE : true;
+    }
+
+    /**
+     * @return string|null
+     */
     public function getGraylogHost(): ?string
     {
         return defined('GRAYLOG_HOST') && GRAYLOG_HOST ? GRAYLOG_HOST : null;
@@ -55,19 +71,27 @@ class WpGraylog
     }
 
     /**
-     * @return string|null
-     */
-    public function getGraylogLevel(): ?string
-    {
-        return defined('GRAYLOG_LEVEL') && GRAYLOG_LEVEL ? GRAYLOG_LEVEL : null;
-    }
-
-    /**
      * @return int|null
      */
     public function getGraylogPort(): ?int
     {
-        return defined('GRAYLOG_PORT') && GRAYLOG_PORT ? (int)GRAYLOG_PORT : null;
+        return defined('GRAYLOG_PORT') && GRAYLOG_PORT ? (int)GRAYLOG_PORT : 12201;
+    }
+
+    /**
+     * @return string|null
+     */
+    public function getGraylogPath(): ?string
+    {
+        return defined('GRAYLOG_PATH') && GRAYLOG_PATH ? GRAYLOG_PATH : '/gelf';
+    }
+
+    /**
+     * @return string|null
+     */
+    public function getGraylogLevel(): ?string
+    {
+        return defined('GRAYLOG_LEVEL') && GRAYLOG_LEVEL ? GRAYLOG_LEVEL : Logger::NOTICE;
     }
 
     /**
@@ -150,8 +174,11 @@ class WpGraylog
         }
 
         return new GraylogHandler(
+            $this->getGraylogTransport(),
+            $this->getGraylogSecure(),
             $graylogHost,
             $this->getGraylogPort(),
+            $this->getGraylogPath(),
             $this->getGraylogLevel()
         );
     }

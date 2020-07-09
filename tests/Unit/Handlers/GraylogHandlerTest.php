@@ -23,7 +23,7 @@ class GraylogHandlerTest extends TestCase
     {
         parent::setUp();
 
-        $this->graylogHandler = new GraylogHandler('localhost', 12201, 'notice');
+        $this->graylogHandler = new GraylogHandler('udp', true, 'localhost', 12201, '/gelf', 'notice');
     }
 
     /**

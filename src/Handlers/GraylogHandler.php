@@ -4,7 +4,11 @@ namespace Exolnet\Wordpress\Graylog\Handlers;
 
 use Exolnet\Wordpress\Graylog\Processors\WordpressProcessor;
 use Gelf\Publisher;
+use Gelf\Transport\HttpTransport;
+use Gelf\Transport\SslOptions;
+use Gelf\Transport\TcpTransport;
 use Gelf\Transport\UdpTransport;
+use InvalidArgumentException;
 use Monolog\Handler\GelfHandler;
 use Monolog\Logger;
 use Monolog\Processor\IntrospectionProcessor;
@@ -15,27 +19,22 @@ use Monolog\Processor\WebProcessor;
 class GraylogHandler extends GelfHandler
 {
     /**
-     * @var int
-     */
-    const PORT_DEFAULT = 12201;
-
-     /**
-     * @var int
-     */
-    const LEVEL_DEFAULT = Logger::NOTICE;
-
-    /**
+     * @param string $transport
+     * @param bool   $secure
      * @param string $host
-     * @param int $port
-     * @param string $level
-     * @param array $extra
+     * @param int    $port
+     * @param string $path
+     * @param int    $level
      */
-    public function __construct(string $host, ?int $port = null, ?string $level = null)
-    {
-        $port = $port ?? static::PORT_DEFAULT;
-        $level = $level ?? static::LEVEL_DEFAULT;
-
-        $transport = new UdpTransport($host, $port);
+    public function __construct(
+        string $transport,
+        bool $secure,
+        string $host,
+        int $port,
+        string $path,
+        $level = Logger::NOTICE
+    ) {
+        $transport = self::makeTransport($transport, $secure, $host, $port, $path);
         $publisher = new Publisher($transport);
 
         parent::__construct($publisher, $level, true);
@@ -46,5 +45,29 @@ class GraylogHandler extends GelfHandler
         $this->pushProcessor(new WebProcessor());
         $this->pushProcessor(new MemoryUsageProcessor());
         $this->pushProcessor(new MemoryPeakUsageProcessor());
+    }
+
+    /**
+     * @param string $transport
+     * @param bool   $secure
+     * @param string $host
+     * @param int    $port
+     * @param string $path
+     * @return \Gelf\Transport\TransportInterface
+     * @throws \InvalidArgumentException
+     */
+    protected static function makeTransport(string $transport, bool $secure, string $host, int $port, string $path)
+    {
+        if ($transport === 'udp') {
+            return new UdpTransport($host, $port);
+        } elseif ($transport === 'tcp') {
+            return new TcpTransport($host, $port, ($secure) ? new SslOptions() : null);
+        } elseif ($transport === 'http') {
+            return new HttpTransport($host, $port, $path, ($secure) ? new SslOptions() : null);
+        } elseif ($transport === 'https') {
+            return new HttpTransport($host, $port, $path, new SslOptions());
+        } else {
+            throw new InvalidArgumentException("Transport [{$transport}] is not supported.");
+        }
     }
 }

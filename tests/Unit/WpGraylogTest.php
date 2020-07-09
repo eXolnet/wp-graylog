@@ -49,6 +49,27 @@ class WpGraylogTest extends TestCase
     /**
      * @return void
      */
+    public function testGetGraylogTransportDefault(): void
+    {
+        $this->assertEquals(
+            'udp',
+            $this->wpGraylog->getGraylogTransport()
+        );
+    }
+
+    /**
+     * @return void
+     */
+    public function testGetGraylogSecureDefault(): void
+    {
+        $this->assertTrue(
+            $this->wpGraylog->getGraylogSecure()
+        );
+    }
+
+    /**
+     * @return void
+     */
     public function testGetGraylogHostDefault(): void
     {
         $this->assertNull(
@@ -69,20 +90,33 @@ class WpGraylogTest extends TestCase
     /**
      * @return void
      */
-    public function testGetGraylogLevelDefault(): void
+    public function testGetGraylogPortDefault(): void
     {
-        $this->assertNull(
-            $this->wpGraylog->getGraylogLevel()
+        $this->assertEquals(
+            12201,
+            $this->wpGraylog->getGraylogPort()
         );
     }
 
     /**
      * @return void
      */
-    public function testGetGraylogPortDefault(): void
+    public function testGetGraylogPathDefault(): void
     {
-        $this->assertNull(
-            $this->wpGraylog->getGraylogPort()
+        $this->assertEquals(
+            '/gelf',
+            $this->wpGraylog->getGraylogPath()
+        );
+    }
+
+    /**
+     * @return void
+     */
+    public function testGetGraylogLevelDefault(): void
+    {
+        $this->assertEquals(
+            Logger::NOTICE,
+            $this->wpGraylog->getGraylogLevel()
         );
     }
 
