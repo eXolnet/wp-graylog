@@ -4,6 +4,7 @@ namespace Exolnet\Wordpress\Graylog\Tests\Unit\Handlers;
 
 use Exolnet\Wordpress\Graylog\Handlers\GraylogHandler;
 use Exolnet\Wordpress\Graylog\Severity;
+use Exolnet\Wordpress\Graylog\Transport;
 use PHPUnit\Framework\TestCase;
 
 /**
@@ -23,7 +24,7 @@ class GraylogHandlerTest extends TestCase
     {
         parent::setUp();
 
-        $this->graylogHandler = new GraylogHandler('udp', true, 'localhost', 12201, '/gelf', 'notice');
+        $this->graylogHandler = new GraylogHandler(Transport::UDP(), 'localhost', 12201, null, 'notice');
     }
 
     /**

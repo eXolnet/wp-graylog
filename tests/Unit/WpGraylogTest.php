@@ -37,6 +37,19 @@ class WpGraylogTest extends TestCase
 
     /**
      * @return void
+     * @test
+     */
+    public function testItIsASingleton(): void
+    {
+        $instance1 = WpGraylog::instance();
+        $instance2 = WpGraylog::instance();
+
+        $this->assertInstanceOf(WpGraylog::class, $instance1);
+        $this->assertEquals($instance1, $instance2);
+    }
+
+    /**
+     * @return void
      */
     public function testGetChannelNameDefault(): void
     {
@@ -54,16 +67,6 @@ class WpGraylogTest extends TestCase
         $this->assertEquals(
             'udp',
             $this->wpGraylog->getGraylogTransport()
-        );
-    }
-
-    /**
-     * @return void
-     */
-    public function testGetGraylogSecureDefault(): void
-    {
-        $this->assertTrue(
-            $this->wpGraylog->getGraylogSecure()
         );
     }
 
