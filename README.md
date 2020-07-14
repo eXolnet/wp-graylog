@@ -57,7 +57,7 @@ The default path for `HTTP` and `HTTPS` transports is `/gelf`. This value can be
 configuration.
 
 ```php
-Config::define('GRAYLOG_PATH', env('GRAYLOG_PATH', '/path/to/gelf'));
+Config::define('GRAYLOG_PATH', env('GRAYLOG_PATH', '/gelf'));
 ```
 
 ### Application Name
