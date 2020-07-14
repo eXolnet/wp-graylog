@@ -3,6 +3,7 @@
 namespace Exolnet\Wordpress\Graylog\Transports;
 
 use Exolnet\Wordpress\Graylog\Transport;
+use Gelf\Transport\AbstractTransport;
 use Gelf\Transport\HttpTransport;
 use Gelf\Transport\SslOptions;
 use Gelf\Transport\TcpTransport;
@@ -16,10 +17,9 @@ class TransportFactory
      * @param string $host
      * @param int $port
      * @param string|null $path
-     * @return \Gelf\Transport\TransportInterface
-     * @throws \InvalidArgumentException
+     * @return \Gelf\Transport\AbstractTransport
      */
-    public function make(Transport $transport, string $host, int $port, ?string $path = null)
+    public function make(Transport $transport, string $host, int $port, ?string $path = null): AbstractTransport
     {
         if ($transport->equals(Transport::UDP())) {
             return $this->makeUdpTransport($host, $port);
