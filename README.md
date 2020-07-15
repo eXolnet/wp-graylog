@@ -31,23 +31,34 @@ Define the following PHP constants in your `config/application.php` file:
  * Here you may configure the Graylog channel for your application. Behind the
  * scene, it uses the Monolog PHP logging library.
  */
+Config::define('GRAYLOG_TRANSPORT', env('GRAYLOG_TRANSPORT'));
 Config::define('GRAYLOG_HOST', env('GRAYLOG_HOST'));
 Config::define('GRAYLOG_PORT', env('GRAYLOG_PORT'));
 Config::define('GRAYLOG_LEVEL', env('GRAYLOG_LEVEL'));
 ```
 
-Then, update your `.env` to add the following environment variables :
+Then, update your `.env` to add `GRAYLOG_HOST` environment variable:
 
 ```
 GRAYLOG_HOST=localhost
-GRAYLOG_PORT=12201
-GRAYLOG_LEVEL=notice
 ```
 
 ## Usage
 
 Once installed, errors occurring in your code with a level higher or equals to the `GRAYLOG_LEVEL` will be sent to
 the specified Graylog instance. You’ll then be able to centralize all your logs in one place.
+
+### Supported Transports
+
+The following transports are supported: `UDP`, `TCP`, `SSL`, `HTTP` and `HTTPS`. Select the transport accordingly to
+your Graylog set up using the `GRAYLOG_TRANSPORT` configuration. By default, the `UDP` transport is used.
+
+The default path for `HTTP` and `HTTPS` transports is `/gelf`. This value can be configured using the `GRAYLOG_PATH`
+configuration.
+
+```php
+Config::define('GRAYLOG_PATH', env('GRAYLOG_PATH', '/gelf'));
+```
 
 ### Application Name
 

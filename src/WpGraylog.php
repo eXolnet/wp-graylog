@@ -5,12 +5,33 @@ namespace Exolnet\Wordpress\Graylog;
 use Exolnet\Wordpress\Graylog\Exceptions\WpGraylogException;
 use Exolnet\Wordpress\Graylog\Handlers\ErrorHandler;
 use Exolnet\Wordpress\Graylog\Handlers\GraylogHandler;
+use Gelf\Transport\HttpTransport;
 use Monolog\Handler\HandlerInterface;
 use Monolog\Logger;
 use Throwable;
 
 class WpGraylog
 {
+    /**
+     * @var string
+     */
+    const DEFAULT_TRANSPORT = 'udp';
+
+    /**
+     * @var int
+     */
+    const DEFAULT_PORT = 12201;
+
+    /**
+     * @var string
+     */
+    const DEFAULT_PATH = HttpTransport::DEFAULT_PATH;
+
+    /**
+     * @var string
+     */
+    const DEFAULT_LEVEL = Logger::NOTICE;
+
     /**
      * @var string
      */
@@ -35,6 +56,16 @@ class WpGraylog
     }
 
     /**
+     * @return \Exolnet\Wordpress\Graylog\Transport
+     */
+    public function getGraylogTransport(): Transport
+    {
+        return new Transport(
+            defined('GRAYLOG_TRANSPORT') && GRAYLOG_TRANSPORT ? GRAYLOG_TRANSPORT : static::DEFAULT_TRANSPORT
+        );
+    }
+
+    /**
      * @return string|null
      */
     public function getGraylogHost(): ?string
@@ -55,19 +86,27 @@ class WpGraylog
     }
 
     /**
-     * @return string|null
+     * @return int
      */
-    public function getGraylogLevel(): ?string
+    public function getGraylogPort(): int
     {
-        return defined('GRAYLOG_LEVEL') && GRAYLOG_LEVEL ? GRAYLOG_LEVEL : null;
+        return defined('GRAYLOG_PORT') && GRAYLOG_PORT ? (int)GRAYLOG_PORT : static::DEFAULT_PORT;
     }
 
     /**
-     * @return int|null
+     * @return string
      */
-    public function getGraylogPort(): ?int
+    public function getGraylogPath(): string
     {
-        return defined('GRAYLOG_PORT') && GRAYLOG_PORT ? (int)GRAYLOG_PORT : null;
+        return defined('GRAYLOG_PATH') && GRAYLOG_PATH ? GRAYLOG_PATH : static::DEFAULT_PATH;
+    }
+
+    /**
+     * @return string
+     */
+    public function getGraylogLevel(): string
+    {
+        return defined('GRAYLOG_LEVEL') && GRAYLOG_LEVEL ? GRAYLOG_LEVEL : static::DEFAULT_LEVEL;
     }
 
     /**
@@ -150,8 +189,10 @@ class WpGraylog
         }
 
         return new GraylogHandler(
+            $this->getGraylogTransport(),
             $graylogHost,
             $this->getGraylogPort(),
+            $this->getGraylogPath(),
             $this->getGraylogLevel()
         );
     }

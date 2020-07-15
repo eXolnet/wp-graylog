@@ -37,12 +37,36 @@ class WpGraylogTest extends TestCase
 
     /**
      * @return void
+     * @test
+     */
+    public function testItIsASingleton(): void
+    {
+        $instance1 = WpGraylog::instance();
+        $instance2 = WpGraylog::instance();
+
+        $this->assertInstanceOf(WpGraylog::class, $instance1);
+        $this->assertEquals($instance1, $instance2);
+    }
+
+    /**
+     * @return void
      */
     public function testGetChannelNameDefault(): void
     {
         $this->assertEquals(
             'graylog',
             $this->wpGraylog->getChannelName()
+        );
+    }
+
+    /**
+     * @return void
+     */
+    public function testGetGraylogTransportDefault(): void
+    {
+        $this->assertEquals(
+            'udp',
+            $this->wpGraylog->getGraylogTransport()
         );
     }
 
@@ -69,20 +93,33 @@ class WpGraylogTest extends TestCase
     /**
      * @return void
      */
-    public function testGetGraylogLevelDefault(): void
+    public function testGetGraylogPortDefault(): void
     {
-        $this->assertNull(
-            $this->wpGraylog->getGraylogLevel()
+        $this->assertEquals(
+            12201,
+            $this->wpGraylog->getGraylogPort()
         );
     }
 
     /**
      * @return void
      */
-    public function testGetGraylogPortDefault(): void
+    public function testGetGraylogPathDefault(): void
     {
-        $this->assertNull(
-            $this->wpGraylog->getGraylogPort()
+        $this->assertEquals(
+            '/gelf',
+            $this->wpGraylog->getGraylogPath()
+        );
+    }
+
+    /**
+     * @return void
+     */
+    public function testGetGraylogLevelDefault(): void
+    {
+        $this->assertEquals(
+            Logger::NOTICE,
+            $this->wpGraylog->getGraylogLevel()
         );
     }
 

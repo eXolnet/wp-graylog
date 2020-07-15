@@ -3,8 +3,9 @@
 namespace Exolnet\Wordpress\Graylog\Handlers;
 
 use Exolnet\Wordpress\Graylog\Processors\WordpressProcessor;
+use Exolnet\Wordpress\Graylog\Transport;
+use Exolnet\Wordpress\Graylog\Transports\TransportFactory;
 use Gelf\Publisher;
-use Gelf\Transport\UdpTransport;
 use Monolog\Handler\GelfHandler;
 use Monolog\Logger;
 use Monolog\Processor\IntrospectionProcessor;
@@ -15,27 +16,20 @@ use Monolog\Processor\WebProcessor;
 class GraylogHandler extends GelfHandler
 {
     /**
-     * @var int
-     */
-    const PORT_DEFAULT = 12201;
-
-     /**
-     * @var int
-     */
-    const LEVEL_DEFAULT = Logger::NOTICE;
-
-    /**
+     * @param \Exolnet\Wordpress\Graylog\Transport $transport
      * @param string $host
      * @param int $port
-     * @param string $level
-     * @param array $extra
+     * @param string|null $path
+     * @param int $level
      */
-    public function __construct(string $host, ?int $port = null, ?string $level = null)
-    {
-        $port = $port ?? static::PORT_DEFAULT;
-        $level = $level ?? static::LEVEL_DEFAULT;
-
-        $transport = new UdpTransport($host, $port);
+    public function __construct(
+        Transport $transport,
+        string $host,
+        int $port,
+        ?string $path,
+        $level = Logger::NOTICE
+    ) {
+        $transport = $this->getTransportFactory()->make($transport, $host, $port, $path);
         $publisher = new Publisher($transport);
 
         parent::__construct($publisher, $level, true);
@@ -46,5 +40,13 @@ class GraylogHandler extends GelfHandler
         $this->pushProcessor(new WebProcessor());
         $this->pushProcessor(new MemoryUsageProcessor());
         $this->pushProcessor(new MemoryPeakUsageProcessor());
+    }
+
+    /**
+     * @return \Exolnet\Wordpress\Graylog\Transports\TransportFactory
+     */
+    protected function getTransportFactory(): TransportFactory
+    {
+        return new TransportFactory();
     }
 }
