@@ -113,6 +113,7 @@ If you discover any security related issues, please email security@exolnet.com i
 
 - [Simon Gaudreau](https://github.com/Gandhi11)
 - [Alexandre D’Eschambeault](https://github.com/xel1045)
+- [Patrick Gagnon-Renaud](https://github.com/pgrenaud)
 - [All Contributors](../../contributors)
 
 ## License
