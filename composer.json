@@ -19,7 +19,7 @@
     "require": {
         "php": "^7.3",
         "graylog2/gelf-php": "^1.6",
-        "monolog/monolog": "^1.24",
+        "monolog/monolog": "^1.24|^2.0",
         "myclabs/php-enum": "^1.7"
     },
     "require-dev": {
