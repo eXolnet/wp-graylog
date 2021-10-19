@@ -12,8 +12,16 @@
     "license": "MIT",
     "authors": [
         {
-            "name": "eXolnet",
-            "homepage": "https://www.exolnet.com"
+            "name": "Alexandre D'Eschambeault",
+            "email": "adeschambeault@exolnet.com"
+        },
+        {
+            "name": "Pat Gagnon-Renaud",
+            "email": "pgrenaud@exolnet.com"
+        },
+        {
+            "name": "Simon Gaudreau",
+            "email": "sgaudreau@exolnet.com"
         }
     ],
     "require": {
