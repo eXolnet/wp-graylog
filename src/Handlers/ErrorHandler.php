@@ -41,18 +41,21 @@ class ErrorHandler extends MonologErrorHandler
     }
 
     /**
-     * @param string|null $level
+     * @param array $levelMap
      * @param bool $callPrevious
+     * @return \Exolnet\Wordpress\Graylog\Handlers\ErrorHandler
      */
-    public function registerExceptionHandler($level = null, $callPrevious = true)
+    public function registerExceptionHandler(array $levelMap = [], bool $callPrevious = true): self
     {
         $prev = set_exception_handler([$this, 'wpHandleException']);
 
-        $this->wpUncaughtExceptionLevel = $level;
+        $this->wpUncaughtExceptionLevel = $levelMap;
 
         if ($callPrevious && $prev) {
             $this->wpPreviousExceptionHandler = $prev;
         }
+
+        return $this;
     }
 
     /**
@@ -98,13 +101,13 @@ class ErrorHandler extends MonologErrorHandler
             throw $exception;
         }
 
-        $this->handleException($previousExceptionHandlerException);
+        $this->wpHandleException($previousExceptionHandlerException);
     }
 
     /**
      * @return void
      */
-    public function handleFatalError()
+    public function handleFatalError(): void
     {
         if ($this->wpPreventFatalHandler) {
             return;

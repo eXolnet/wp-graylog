@@ -25,9 +25,9 @@
         }
     ],
     "require": {
-        "php": "^7.3|^8.0",
+        "php": "^7.4|^8.0",
         "graylog2/gelf-php": "^1.6",
-        "monolog/monolog": "^1.24",
+        "monolog/monolog": "^2.0",
         "myclabs/php-enum": "^1.7"
     },
     "require-dev": {
