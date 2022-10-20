@@ -16,9 +16,9 @@ class ErrorHandler extends MonologErrorHandler
     protected $wpLogger;
 
     /**
-     * @var string|null
+     * @var array<class-string, LogLevel::*> an array of class name to LogLevel::* constant mapping
      */
-    protected $wpUncaughtExceptionLevel;
+    protected $wpUncaughtExceptionLevelMap;
 
     /**
      * @var callable|null
@@ -49,7 +49,12 @@ class ErrorHandler extends MonologErrorHandler
     {
         $prev = set_exception_handler([$this, 'wpHandleException']);
 
-        $this->wpUncaughtExceptionLevel = $levelMap;
+        $this->wpUncaughtExceptionLevelMap = $levelMap;
+        foreach ($this->defaultExceptionLevelMap() as $class => $level) {
+            if (!isset($this->wpUncaughtExceptionLevelMap[$class])) {
+                $this->wpUncaughtExceptionLevelMap[$class] = $level;
+            }
+        }
 
         if ($callPrevious && $prev) {
             $this->wpPreviousExceptionHandler = $prev;
@@ -121,8 +126,16 @@ class ErrorHandler extends MonologErrorHandler
      */
     protected function logException(Throwable $exception): void
     {
+        $level = LogLevel::ERROR;
+        foreach ($this->wpUncaughtExceptionLevelMap as $class => $candidate) {
+            if ($exception instanceof $class) {
+                $level = $candidate;
+                break;
+            }
+        }
+
         $this->wpLogger->log(
-            $this->wpUncaughtExceptionLevel === null ? LogLevel::ERROR : $this->wpUncaughtExceptionLevel,
+            $level,
             sprintf(
                 'Uncaught Exception %s: "%s" at %s line %s',
                 Utils::getClass($exception),
