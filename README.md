@@ -11,7 +11,7 @@ Adds a mu-plugin that register a Monolog handler to send exception to a Graylog 
 
 * Bedrock
 * Composer
-* PHP 7.3 or greater
+* PHP 8.1 or greater
 * Wordpress
 
 ## Installation
