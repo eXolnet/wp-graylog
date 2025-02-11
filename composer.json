@@ -25,13 +25,13 @@
         }
     ],
     "require": {
-        "php": "^7.4|^8.0",
+        "php": "^8.1",
         "graylog2/gelf-php": "^1.6",
         "monolog/monolog": "^2.3",
         "myclabs/php-enum": "^1.8.1"
     },
     "require-dev": {
-        "exolnet/phpcs-config": "^1.0",
+        "exolnet/phpcs-config": "^2.0",
         "mockery/mockery": "^1.5",
         "phpunit/phpunit": "^9.3.3",
         "squizlabs/php_codesniffer": "^3.6"

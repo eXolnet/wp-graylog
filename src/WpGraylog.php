@@ -15,27 +15,27 @@ class WpGraylog
     /**
      * @var string
      */
-    const DEFAULT_TRANSPORT = 'udp';
+    public const DEFAULT_TRANSPORT = 'udp';
 
     /**
      * @var int
      */
-    const DEFAULT_PORT = 12201;
+    public const DEFAULT_PORT = 12201;
 
     /**
      * @var string
      */
-    const DEFAULT_PATH = HttpTransport::DEFAULT_PATH;
+    public const DEFAULT_PATH = HttpTransport::DEFAULT_PATH;
 
     /**
      * @var string
      */
-    const DEFAULT_LEVEL = Logger::NOTICE;
+    public const DEFAULT_LEVEL = Logger::NOTICE;
 
     /**
      * @var string
      */
-    const CHANNEL_NAME_FALLBACK = 'graylog';
+    public const CHANNEL_NAME_FALLBACK = 'graylog';
 
     /**
      * @var static
@@ -203,7 +203,7 @@ class WpGraylog
     public static function instance(): self
     {
         if (! static::$instance) {
-            static::$instance = new static;
+            static::$instance = new static();
         }
 
         return static::$instance;
