@@ -18,7 +18,7 @@ class ErrorHandler extends MonologErrorHandler
     /**
      * @var array<class-string, LogLevel::*> an array of class name to LogLevel::* constant mapping
      */
-    protected $wpUncaughtExceptionLevelMap;
+    protected $wpUncaughtExceptionLevelMap = [];
 
     /**
      * @var callable|null
