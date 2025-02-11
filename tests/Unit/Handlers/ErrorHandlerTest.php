@@ -44,7 +44,6 @@ class ErrorHandlerTest extends TestCase
 
     /**
      * @return void
-     * @test
      * @throws \Throwable
      */
     public function testWpHandleException(): void
@@ -60,7 +59,6 @@ class ErrorHandlerTest extends TestCase
 
     /**
      * @return void
-     * @test
      * @throws \Throwable
      */
     public function testWpHandleExceptionWithExceptionWhileLogging(): void
