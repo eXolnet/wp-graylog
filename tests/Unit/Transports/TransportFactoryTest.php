@@ -30,8 +30,7 @@ class TransportFactoryTest extends TestCase
     }
 
     /**
-     * @return void
-     * @test
+     * @return voi
      */
     public function testMakeUdpTransport(): void
     {
@@ -42,7 +41,6 @@ class TransportFactoryTest extends TestCase
 
     /**
      * @return void
-     * @test
      */
     public function testMakeTcpTransport(): void
     {
@@ -53,7 +51,6 @@ class TransportFactoryTest extends TestCase
 
     /**
      * @return void
-     * @test
      */
     public function testMakeSslTransport(): void
     {
@@ -64,7 +61,6 @@ class TransportFactoryTest extends TestCase
 
     /**
      * @return void
-     * @test
      */
     public function testMakeHttpTransport(): void
     {
@@ -75,7 +71,6 @@ class TransportFactoryTest extends TestCase
 
     /**
      * @return void
-     * @test
      */
     public function testMakeHttpsTransport(): void
     {

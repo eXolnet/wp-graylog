@@ -37,7 +37,6 @@ class WpGraylogTest extends TestCase
 
     /**
      * @return void
-     * @test
      */
     public function testItIsASingleton(): void
     {
